@@ -1,0 +1,28 @@
+#!/bin/bash
+set -e
+
+# Set GTK theme for live user
+mkdir -p /etc/skel/.config/gtk-3.0
+cat <<EOF > /etc/skel/.config/gtk-3.0/settings.ini
+[Settings]
+gtk-theme-name = diinki-aero
+gtk-icon-theme-name = diinki-icons
+gtk-font-name = Noto Sans 10
+EOF
+
+# Set Plasma default icons (for KDE apps)
+mkdir -p /etc/skel/.config/
+cat <<EOF > /etc/skel/.config/kdeglobals
+[Icons]
+Theme=diinki-icons
+EOF
+
+# Optional: Set default wallpaper
+mkdir -p /etc/skel/.config/plasma-org.kde.plasma.desktop-appletsrc
+cat <<EOF > /etc/skel/.config/plasma-org.kde.plasma.desktop-appletsrc
+[Containments][1][Wallpaper][Image]
+wallpaper=/usr/share/wallpapers/diinki/aquarium.png
+[Containments][1][Wallpaper][General]
+fillMode=2
+EOF
+

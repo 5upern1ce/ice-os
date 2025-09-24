@@ -1,0 +1,31 @@
+#!/bin/bash
+set -e
+
+# --- 1. Install Kitty and Neofetch ---
+apt update
+apt install -y kitty neofetch
+
+# --- 2. Create Neofetch config folder for all users ---
+mkdir -p /etc/skel/.config/neofetch
+
+# --- 3. Write custom Neofetch config ---
+cat <<'EOF' > /etc/skel/.config/neofetch/config.conf
+print_info() {
+    info "OS" distro
+    info "Kernel" kernel
+    info "Uptime" uptime
+    info "Packages" packages
+    info "Shell" shell
+    info "Resolution" resolution
+    info "DE" de
+    info "WM" wm
+    info "CPU" cpu
+    info "GPU" gpu
+    info "Memory" memory
+}
+
+EOF
+
+# --- 4. Make Neofetch use this config for new users ---
+chmod -R 755 /etc/skel/.config/neofetch
+
