@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+# Add Flathub remote
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Install VS Code from Flathub
+flatpak install -y flathub com.visualstudio.code
+flatpak install -y flathub com.opera.Opera
+
+
